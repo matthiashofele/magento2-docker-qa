@@ -14,7 +14,7 @@ scripts/m2init magento:setup --no-interaction
 # Setup magento 2 for testing
 cd /var/www/magento2
 chmod +x bin/magento
-cp /home/magento2/conf/install-config-mysql.php ./dev/tests/integration/etc/
+cp /home/magento2/conf/install-config-mysql.php dev/tests/integration/etc/
 
 ./bin/magento dev:tests:run unit
 ./bin/magento dev:tests:run integration
