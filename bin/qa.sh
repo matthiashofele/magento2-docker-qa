@@ -16,5 +16,7 @@ cd /var/www/magento2
 chmod +x bin/magento
 cp /home/magento2/conf/install-config-mysql.php dev/tests/integration/etc/
 
+# Run unit and integration tests.
 ./bin/magento dev:tests:run unit
 ./bin/magento dev:tests:run integration
+
