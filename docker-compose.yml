@@ -4,8 +4,8 @@ magento:
     - db
     - db_test
   volumes:
-    - /home/isheptykin/.composer/auth.json:/home/magento2/.composer/auth.json
-    - /home/isheptykin/.composer/auth.json:/root/.composer/auth.json
+    - ~/.composer/auth.json:/home/magento2/.composer/auth.json
+    - ~/.composer/auth.json:/root/.composer/auth.json
 
 db:
   image: mariadb:latest
