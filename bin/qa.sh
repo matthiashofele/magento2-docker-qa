@@ -1,15 +1,20 @@
 #!/usr/bin/env bash
 
-# Original m2 entrypoint
-#bash /usr/local/bin/entrypoint.sh
-
-#set timeout 10
-
 # Install magento
 
-scripts/m2init magento:install --no-interaction
+# Installing m2 should be as asy as running this line
+# scripts/m2init magento:install --no-interaction
+# in the current version of Magento DevBox this command
+# will unfortunately fail.
 
+# Installing magento 2 'manually'
+scripts/m2init magento:download --no-interaction
+scripts/m2init magento:setup --no-interaction
+
+# Setup magento 2 for testing
 cd /var/www/magento2
-cp /home/magento2/conf/install-config-mysql.php /var/www/magento2/dev/tests/integration/etc/
-chmod +x /var/www/magento2/bin/magento
+chmod +x bin/magento
+cp /home/magento2/conf/install-config-mysql.php ./dev/tests/integration/etc/
+
 ./bin/magento dev:tests:run unit
+./bin/magento dev:tests:run integration

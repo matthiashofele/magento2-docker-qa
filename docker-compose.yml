@@ -1,0 +1,22 @@
+magento:
+  build: ./
+  links:
+    - db
+    - db_test
+  volumes:
+    - /home/isheptykin/.composer/auth.json:/home/magento2/.composer/auth.json
+    - /home/isheptykin/.composer/auth.json:/root/.composer/auth.json
+
+db:
+  image: mariadb:latest
+  environment:
+    - MYSQL_ROOT_PASSWORD=root
+    - MYSQL_DATABASE=magento2
+
+db_test:
+  image: mariadb:latest
+  environment:
+    - MYSQL_ROOT_PASSWORD=root
+    - MYSQL_DATABASE=m2
+    - MYSQL_USER=m2
+    - MYSQL_PASSWORD=m2
