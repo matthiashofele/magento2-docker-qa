@@ -8,13 +8,8 @@ services:
     volumes:
       - ~/.composer/auth.json:/home/magento2/.composer/auth.json
       - ~/.composer/auth.json:/root/.composer/auth.json
-    environment:
-      - FTP_PROXY=http://ftp-proxy.intern.neusta.de:3128
-      - HTTPS_PROXY=http://https-proxy.intern.neusta.de:3128
-      - HTTP_PROXY=http://http-proxy.intern.neusta.de:3128
-      - ftp_proxy=http://ftp-proxy.intern.neusta.de:3128
-      - http_proxy=http://http-proxy.intern.neusta.de:3128
-      - https_proxy=http://https-proxy.intern.neusta.de:3128
+    env_file:
+      - environment.env # use one if you are behind a proxy or smth.
     ports:
       - 8080:8080
     extra_hosts:
