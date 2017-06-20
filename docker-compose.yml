@@ -1,22 +1,42 @@
-magento:
-  build: ./
-  links:
-    - db
-    - db_test
-  volumes:
-    - ~/.composer/auth.json:/home/magento2/.composer/auth.json
-    - ~/.composer/auth.json:/root/.composer/auth.json
+version: '3'
+services:
+  magento.local:
+    build: ./
+    depends_on:
+      - db
+      - db_test
+    volumes:
+      - ~/.composer/auth.json:/home/magento2/.composer/auth.json
+      - ~/.composer/auth.json:/root/.composer/auth.json
+    environment:
+      - FTP_PROXY=http://ftp-proxy.intern.neusta.de:3128
+      - HTTPS_PROXY=http://https-proxy.intern.neusta.de:3128
+      - HTTP_PROXY=http://http-proxy.intern.neusta.de:3128
+      - ftp_proxy=http://ftp-proxy.intern.neusta.de:3128
+      - http_proxy=http://http-proxy.intern.neusta.de:3128
+      - https_proxy=http://https-proxy.intern.neusta.de:3128
+    ports:
+      - 8080:8080
+    extra_hosts:
+      - "magento.local:127.0.0.1"
 
-db:
-  image: mariadb:latest
-  environment:
-    - MYSQL_ROOT_PASSWORD=root
-    - MYSQL_DATABASE=magento2
+  db:
+    image: mariadb:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=magento2
 
-db_test:
-  image: mariadb:latest
-  environment:
-    - MYSQL_ROOT_PASSWORD=root
-    - MYSQL_DATABASE=m2
-    - MYSQL_USER=m2
-    - MYSQL_PASSWORD=m2
+  db_test:
+    image: mariadb:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=m2
+      - MYSQL_USER=m2
+      - MYSQL_PASSWORD=m2
+
+  selenium:
+    image: selenium/standalone-chrome
+    ports:
+      - 4444:4444
+    depends_on:
+      - magento.local

@@ -1,0 +1,4 @@
+default,0,cms/wysiwyg/enabled,disabled
+default,0,admin/security/admin_account_sharing,1
+default,0,admin/security/use_form_key,0
+default,0,admin/security/use_case_sensitive_login,0

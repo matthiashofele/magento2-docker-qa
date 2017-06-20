@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2013-2017 FireGento e. V.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="config.xsd">
+    <!-- Application configuration settings. -->
+    <application>
+        <reopenBrowser>testCase</reopenBrowser>
+        <backendLogin>admin</backendLogin>
+        <backendPassword>admin123</backendPassword>
+        <appBackendUrl>http://magento.local:8080/admin/</appBackendUrl>
+        <backendLoginUrl>admin/auth/login</backendLoginUrl>
+    </application>
+    <!-- Set of parameters to be used for installation test case. -->
+    <install>
+        <host>db_test</host>
+        <user>m2</user>
+        <password>m2</password>
+        <dbName>m2</dbName>
+        <baseUrl>http://magento.local:8080/</baseUrl>
+        <backendName>admin</backendName>
+    </install>
+    <!-- Selenium server settings. -->
+    <server>
+      <item name="selenium"
+            type="default"
+            browser="Google Chrome"
+            browserName="chrome"
+            host="selenium"
+            port="4444"
+            seleniumServerRequestsTimeout="90"
+            sessionStrategy="shared">
+          <desiredCapabilities>
+              <platform>ANY</platform>
+          </desiredCapabilities>
+      </item>
+    </server>
+    <handler>
+      <curl priority="0" />
+      <ui priority="1" />
+      <webapi priority="2">
+            <token>integration_token</token>
+        </webapi>
+    </handler>
+</config>
